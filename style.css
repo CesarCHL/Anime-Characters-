@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: rgb(49, 45, 45);
 }
 
 header {
@@ -38,6 +39,15 @@ input::placeholder {
     fill: currentColor;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    place-items: center;
+    position: absolute;
+    margin: 40px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -55,12 +65,9 @@ input::placeholder {
     margin: 16px 0;
 }
 
-.image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px; /* Adjusted height to fit within the card */
-    width: 100%;
+img {
+    height: 200px;
+    width: 150px;
 }
 
 .info {
@@ -69,7 +76,14 @@ input::placeholder {
     align-items: center;
     font-size: 16px;
     color: white;
-    text-align: center;
+    text-align: left;
     margin-top: auto;
-    height: 20pxpx;
+    height: 50px;
+    list-style: none; 
+    padding: 0;
+    margin: 0;
 }
+ .info li {
+    list-style-type: none;
+    margin: 8px 0;
+ }

@@ -39,13 +39,12 @@ input::placeholder {
     fill: currentColor;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    place-items: center;
-    position: absolute;
-    margin: 40px;
+#cards-container {
+   display: flex;
+   gap:  12px;
+   flex-wrap: wrap;
+   padding: 12px;
+   
 }
 
 .card {
@@ -83,7 +82,3 @@ img {
     padding: 0;
     margin: 0;
 }
- .info li {
-    list-style-type: none;
-    margin: 8px 0;
- }

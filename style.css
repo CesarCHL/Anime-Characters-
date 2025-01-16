@@ -1,25 +1,24 @@
 body {
     margin: 0;
-    background-color: rgb(49, 45, 45);
+    background-color: #2d2f41;
 }
 
 header {
-    background-color: #fb1a09;
+    background-color: #ff6f61;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:  0 40px;
+    padding: 0 40px;
 }
 
 input {
     border: 0px;
     background-color: transparent;
-    color: white;
+    color: #f0f0f0;
 }
 
-
 input::placeholder {
-    color: rgb(107, 107, 107);
+    color: #c5c5c5;
 }
 
 .searchbar {
@@ -27,7 +26,7 @@ input::placeholder {
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    background-color: black;
+    background-color: #3c3f51;
     color: white;
     padding: 8px;
     border-radius: 12px;
@@ -41,13 +40,13 @@ input::placeholder {
 
 #cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) ;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 25px;
 }
 
 .card {
     border-radius: 40px;
-    background-color: #fb1a09;
+    background-color: rgba(24, 12, 66, .2); /* Added opacity to the background color */
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -73,6 +72,39 @@ img {
 
 .info {
     font-size: 16px;
-    color: white;
+    color: #f0f0f0;
     margin-top: 16px;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.rating .bi-fire {
+    display: inline-block;
+    margin: 0 .5px;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.rating .bi-fire a {
+    color: #6d6951;
+    transform: scale(1.2);
+    transition: transform 0.2s, color 0.2s;
+}
+
+.rating .bi-fire a.active {
+    color: #ffd322;
+}
+
+.rating .bi-fire:hover ~ .bi-fire a,
+.rating .bi-fire:hover a {
+    color: #ffd322;
+    transform: scale(1.4);
+}
+
+.rating .bi-fire:hover ~ .bi-fire a.active,
+.rating .bi-fire:hover a.active {
+    color: #ffd322;
 }

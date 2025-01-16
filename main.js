@@ -52,11 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class = "title">${anime.title}</div>
         <img src="${anime.img}" alt="">
         <div class = "info">${anime.info}</div>
+        <div class = "rating" >
+        <i class="bi bi-fire"></i>
+        <i class="bi bi-fire"></i>
+        <i class="bi bi-fire"></i>
+        <i class="bi bi-fire"></i>
+        <i class="bi bi-fire"></i>
+        </div>
         `;
         container.appendChild(card);
     });
 })
 
+const ratingAnime = document.querySelectorAll(".rating .bi-fire")
 const  searchElement = document.querySelector("#searchbar");
 
 searchElement.addEventListener("input", () => {

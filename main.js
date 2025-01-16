@@ -57,19 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 })
 
-function searchAnime(query) {
-    const resultContainer = document.querySelector("#results")
-    const filteredAnimes = animes.filter(anime => anime.title.toLoweCase().includes(query.toLoweCase()));
-    
-    resultContainer = innerHTML = "";
-
-    filteredAnimes.forEach(anime => 
-        
-    })
-}
-
-
-
 const  searchElement = document.querySelector("#searchbar");
-    searchElement .addEventListener
+
+searchElement.addEventListener("input", () => {
+    const query = searchElement.value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const title = card.querySelector(".title").textContent.toLowerCase();
+
+        if(title.includes(query)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
 

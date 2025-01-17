@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: "Black Clover",
             img: "https://imgs.search.brave.com/ph4PugEjAc0yp_MRLa1N80SpeGEVVPI8foS1rs3eMc8/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFYNjA4NEpNc0wu/anBn",
-            info: "2 seasons"
+            info: "4 seasons"
         },
         {
             title: "Fire force",
             img: "https://imgs.search.brave.com/LBiD45xCUM9xlMQtUU_XauSeXxSSmrgyb2jFQRs--_A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODF3dDVkSDB5N0wu/anBn",
-            info: "21 seasons"
+            info: "2 seasons"
         },
         {
             title: "Chainsaw Man",
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         container.appendChild(card);
     });
-})
+
 
 const ratingAnime = document.querySelectorAll(".rating .bi-fire")
 const  searchElement = document.querySelector("#searchbar");
@@ -82,14 +82,40 @@ searchElement.addEventListener("input", () => {
     });
 });
 
-let fire = document.querySelectorAll(".rating i");
+function saveRating(ratingId, index) {
+    localStorage.setItem(ratingId, index)
+}
 
-fire.forEach((fire, index) => {
-    fire.addEventListener('click', () => {
-        fire.forEach((fire, index2) => {
-            index2 <= index 
-            ? fire.classList.add('active') 
-            : fire.classList.remove('active');
+function loadRating(ratingId) {
+    return localStorage.getItem(ratingId)
+}
+
+let ratings = document.querySelectorAll(".rating");
+console.log("rating list", ratings);
+
+ratings.forEach(rating => {
+    const savedRaing = loadRating()
+    const fires = rating.querySelectorAll(".bi-fire");
+    fires.forEach((fire, index) => {
+        fire.addEventListener('click', () => {
+            fires.forEach((fire, index2) => {
+                index2 <= index 
+                ? fire.classList.add('active') 
+                : fire.classList.remove('active');
+            });
+        });
+        fire.addEventListener('mouseover', () =>{
+            fires.forEach((fire, index2) => {
+                index2 <= index
+                ? fire.classList.add('hovered')
+                : fire.classList.remove('hovered')
+            });
+        });
+        fire.addEventListener('mouseout', () => {
+            fires.forEach(fire => {
+                fire.classList.remove('hovered')
+            });
         });
     });
+});
 });

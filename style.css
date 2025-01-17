@@ -76,6 +76,11 @@ img {
     margin-top: 16px;
 }
 
+.rating {
+    padding: 15px;
+    margin-top: 15px;
+}
+
 .rating i {
     color: gainsboro;
     cursor: pointer;
@@ -86,9 +91,15 @@ img {
 
 .rating i:hover {
     color: gold;
-    transform: scale(1.5);
+    transform: scale(1.2);
 }
 
 .rating i.active {
     color: gold;
+}
+
+.bi-fire.hovered {
+    color: gold;
+    transform: scale(1.2);
+    transition: 0.3s ease, transform 0.3s ease;
 }

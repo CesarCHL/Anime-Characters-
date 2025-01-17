@@ -46,7 +46,7 @@ input::placeholder {
 
 .card {
     border-radius: 40px;
-    background-color: rgba(24, 12, 66, .2); /* Added opacity to the background color */
+    background-color: rgba(202, 240, 248, .2); /* Added opacity to the background color */
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -76,35 +76,19 @@ img {
     margin-top: 16px;
 }
 
-.rating {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.rating .bi-fire {
+.rating i {
+    color: gainsboro;
+    cursor: pointer;
+    transition: color 0.3s ease; 
     display: inline-block;
-    margin: 0 .5px;
-    transition: transform 0.2s, color 0.2s;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.rating .bi-fire a {
-    color: #6d6951;
-    transform: scale(1.2);
-    transition: transform 0.2s, color 0.2s;
+.rating i:hover {
+    color: gold;
+    transform: scale(1.5);
 }
 
-.rating .bi-fire a.active {
-    color: #ffd322;
-}
-
-.rating .bi-fire:hover ~ .bi-fire a,
-.rating .bi-fire:hover a {
-    color: #ffd322;
-    transform: scale(1.4);
-}
-
-.rating .bi-fire:hover ~ .bi-fire a.active,
-.rating .bi-fire:hover a.active {
-    color: #ffd322;
+.rating i.active {
+    color: gold;
 }

@@ -82,3 +82,14 @@ searchElement.addEventListener("input", () => {
     });
 });
 
+let fire = document.querySelectorAll(".rating i");
+
+fire.forEach((fire, index) => {
+    fire.addEventListener('click', () => {
+        fire.forEach((fire, index2) => {
+            index2 <= index 
+            ? fire.classList.add('active') 
+            : fire.classList.remove('active');
+        });
+    });
+});

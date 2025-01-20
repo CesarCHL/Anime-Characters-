@@ -42,7 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
     
+    let style = document.createElement('style');
+    let position = 'right';
 
+    style .innerHTML = `
+    @keyframes my_animation {
+    0%${position}: -${document.querySelector('.text').offsetWifth + 10}px
+    `
     const container = document.getElementById('cards-container')
 
     animes.forEach((anime, animeIndex) => {

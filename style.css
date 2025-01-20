@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: #252525;
+    font-family: "Space Mono", serif;
 }
 
 header {
@@ -62,6 +63,7 @@ input::placeholder {
     font-weight: bold;
     margin: 16px 0;
     overflow: hidden;
+    animation: title_animation 24s linear infinite;
 }
 
 img {

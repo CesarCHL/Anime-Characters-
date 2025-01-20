@@ -45,14 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.getElementById('cards-container')
 
-    animes.forEach(anime => {
+    animes.forEach((anime, animeIndex) => {
         const card = document.createElement('div')
         card.className = 'card'
         card.innerHTML = `
         <div class = "title">${anime.title}</div>
         <img src="${anime.img}" alt="">
         <div class = "info">${anime.info}</div>
-        <div class = "rating" >
+        <div class = "rating" data-anime-index="${animeIndex}">
         <i class="bi bi-fire"></i>
         <i class="bi bi-fire"></i>
         <i class="bi bi-fire"></i>
@@ -94,10 +94,21 @@ let ratings = document.querySelectorAll(".rating");
 console.log("rating list", ratings);
 
 ratings.forEach(rating => {
-    const savedRaing = loadRating()
+    const animeIndex = rating.getAttribute('data-anime-index');
+    const savedRating = loadRating(`rating-${animeIndex}`);
     const fires = rating.querySelectorAll(".bi-fire");
+
+    if (savedRating) {
+        fires.forEach((fire, index) => {
+            if (index < savedRating) {
+                fire.classList.add('active');
+            }
+        });
+    }
+
     fires.forEach((fire, index) => {
-        fire.addEventListener('click', () => {
+        fire.addEventListener('click', () => { 
+            saveRating(`rating-${animeIndex}`, index + 1);
             fires.forEach((fire, index2) => {
                 index2 <= index 
                 ? fire.classList.add('active') 
@@ -112,10 +123,16 @@ ratings.forEach(rating => {
             });
         });
         fire.addEventListener('mouseout', () => {
-            fires.forEach(fire => {
-                fire.classList.remove('hovered')
+            fires.forEach((fire, index2) => {
+                if (index2 < savedRating) {
+                    fire.classList.add('active');
+                } else {
+                    fire.classList.remove('hovered');
+                }
             });
         });
     });
 });
 });
+
+

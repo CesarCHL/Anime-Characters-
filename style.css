@@ -56,6 +56,10 @@ input::placeholder {
     margin: 1rem;
 }
 
+.card:hover{
+    transform: scale(1.05);
+}
+
 .card > .title {
     flex-wrap: wrap;
     color: white;
@@ -63,8 +67,29 @@ input::placeholder {
     font-weight: bold;
     margin: 16px 0;
     overflow: hidden;
-    animation: title_animation 24s linear infinite;
+    animation: slide 10s linaer infinite;
+    display: inline-block;
+    white-space: nowrap;
 }
+@keyframes slide {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.title-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.title {
+    display: inline-block;
+    animation: slide 10s linear infinite;
+}
+
 
 img {
     height: 200px;

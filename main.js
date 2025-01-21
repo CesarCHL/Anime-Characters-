@@ -42,23 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
     
-    let style = document.createElement('style');
-    let position = 'right';
 
-    style .innerHTML = `
-    @keyframes my_animation {
-    0%${position}: -${document.querySelector('.text').offsetWifth + 10}px
-    `
-    const container = document.getElementById('cards-container')
+    const container = document.getElementById('cards-container');
 
     animes.forEach((anime, animeIndex) => {
-        const card = document.createElement('div')
-        card.className = 'card'
+        const card = document.createElement('div');
+        card.className = 'card';
         card.innerHTML = `
-        <div class = "title">${anime.title}</div>
+        <div class="title-container">
+        <div class="title">${anime.title}</div>
+        </div>
         <img src="${anime.img}" alt="">
-        <div class = "info">${anime.info}</div>
-        <div class = "rating" data-anime-index="${animeIndex}">
+        <div class="info">${anime.info}</div>
+        <div class="rating" data-anime-index="${animeIndex}">
         <i class="bi bi-fire"></i>
         <i class="bi bi-fire"></i>
         <i class="bi bi-fire"></i>
@@ -69,76 +65,73 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(card);
     });
 
+    const ratingAnime = document.querySelectorAll(".rating .bi-fire");
+    const searchElement = document.querySelector("#searchbar");
 
-const ratingAnime = document.querySelectorAll(".rating .bi-fire")
-const  searchElement = document.querySelector("#searchbar");
+    searchElement.addEventListener("input", () => {
+        const query = searchElement.value.toLowerCase();
+        const cards = document.querySelectorAll(".card");
 
-searchElement.addEventListener("input", () => {
-    const query = searchElement.value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
+        cards.forEach(card => {
+            const title = card.querySelector(".title").textContent.toLowerCase();
 
-    cards.forEach(card => {
-        const title = card.querySelector(".title").textContent.toLowerCase();
-
-        if(title.includes(query)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-});
-
-function saveRating(ratingId, index) {
-    localStorage.setItem(ratingId, index)
-}
-
-function loadRating(ratingId) {
-    return localStorage.getItem(ratingId)
-}
-
-let ratings = document.querySelectorAll(".rating");
-console.log("rating list", ratings);
-
-ratings.forEach(rating => {
-    const animeIndex = rating.getAttribute('data-anime-index');
-    const savedRating = loadRating(`rating-${animeIndex}`);
-    const fires = rating.querySelectorAll(".bi-fire");
-
-    if (savedRating) {
-        fires.forEach((fire, index) => {
-            if (index < savedRating) {
-                fire.classList.add('active');
+            if (title.includes(query)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
             }
         });
+    });
+
+    function saveRating(ratingId, index) {
+        localStorage.setItem(ratingId, index);
     }
 
-    fires.forEach((fire, index) => {
-        fire.addEventListener('click', () => { 
-            saveRating(`rating-${animeIndex}`, index + 1);
-            fires.forEach((fire, index2) => {
-                index2 <= index 
-                ? fire.classList.add('active') 
-                : fire.classList.remove('active');
-            });
-        });
-        fire.addEventListener('mouseover', () =>{
-            fires.forEach((fire, index2) => {
-                index2 <= index
-                ? fire.classList.add('hovered')
-                : fire.classList.remove('hovered')
-            });
-        });
-        fire.addEventListener('mouseout', () => {
-            fires.forEach((fire, index2) => {
-                if (index2 < savedRating) {
+    function loadRating(ratingId) {
+        return localStorage.getItem(ratingId);
+    }
+
+    let ratings = document.querySelectorAll(".rating");
+    console.log("rating list", ratings);
+
+    ratings.forEach(rating => {
+        const animeIndex = rating.getAttribute('data-anime-index');
+        const savedRating = loadRating(`rating-${animeIndex}`);
+        const fires = rating.querySelectorAll(".bi-fire");
+
+        if (savedRating) {
+            fires.forEach((fire, index) => {
+                if (index < savedRating) {
                     fire.classList.add('active');
-                } else {
-                    fire.classList.remove('hovered');
                 }
+            });
+        }
+
+        fires.forEach((fire, index) => {
+            fire.addEventListener('click', () => { 
+                saveRating(`rating-${animeIndex}`, index + 1);
+                fires.forEach((fire, index2) => {
+                    index2 <= index 
+                    ? fire.classList.add('active') 
+                    : fire.classList.remove('active');
+                });
+            });
+            fire.addEventListener('mouseover', () => {
+                fires.forEach((fire, index2) => {
+                    index2 <= index
+                    ? fire.classList.add('hovered')
+                    : fire.classList.remove('hovered');
+                });
+            });
+            fire.addEventListener('mouseout', () => {
+                fires.forEach((fire, index2) => {
+                    if (index2 < savedRating) {
+                        fire.classList.add('active');
+                    } else {
+                        fire.classList.remove('hovered');
+                    }
+                });
             });
         });
     });
 });
-});
-
-
